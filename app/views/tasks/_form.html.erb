@@ -12,5 +12,8 @@
   <%= f.label :content, "タスク" %>
   <%= f.text_field :content %>
   
+  <%= f.label :status, "ステータス" %>
+  <%= f.select :status, [["未着", "未着"], ["対応中", "対応中"], ["完了", "完了"], ["ペンディング", "ペンディング"]] %>
+  
   <%= f.submit "登録" %>
 <% end %>
