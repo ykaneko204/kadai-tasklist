@@ -10,6 +10,7 @@ class TasksController < ApplicationController
       redirect_to root_url
     else
       @tasks = current_user.tasks.order("created_at DESC").page(params[:page])
+      @user = current_user
       flash.now[:danger] = "Task が登録されませんでした"
       render "toppages/index"
     end
