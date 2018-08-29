@@ -1,5 +1,30 @@
-<div class="center jumbotron">
-  <div class="text-center">
-    <h1>Welcome to the TaskList</h1>
+<% if logged_in? %>
+  <div class="row">
+    <aside class="col-md-4">
+      <div class="panel panel-info">
+        <div class="panel-heading">
+          <h3 class="panel-title text-center"><%= @user.name %> のタスク新規登録</h3>
+        </div>
+        <div class="panel-body">
+          <%= form_for(@task) do |f| %>
+            <div class="form-group">
+              <%= f.text_area :content, class: 'form-control', rows: 5 %>
+              <%= f.select :status, [["未着", "未着"], ["対応中", "対応中"], ["完了", "完了"], ["ペンディング", "ペンディング"]], {}, {class: "form-control"} %>
+            </div>
+            <%= f.submit '登録', class: 'btn btn-primary btn-block' %>
+          <% end %>
+        </div>
+      </div>
+    </aside>
+    <div class="col-xs-8">
+      <%= render 'tasks/tasks', tasks: @tasks %>
+    </div>
   </div>
-</div>
+<% else %>
+  <div class="center jumbotron">
+    <div class="text-center">
+      <h1>Welcome to the TaskList</h1>
+      <%= link_to 'Sign up now!', signup_path, class: 'btn btn-lg btn-primary' %>
+    </div>
+  </div>
+<% end %>

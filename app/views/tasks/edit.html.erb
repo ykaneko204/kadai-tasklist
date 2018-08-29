@@ -1,3 +1,21 @@
-<h1>id: <%= @task.id %> のタスク編集作成ページ</h1>
+<div class="row">
+  <div class="col-md-4 col-md-offset-4">
+    <div class="panel panel-info">
+      <div class="panel-heading">
+        <h2 class="panel-title text-center"><%= @user.name%> のタスク編集</h2>
+      </div>
+      <div class="panel-body">
+        <%= form_for(@task) do |f| %>
+          <div class="form-group">
+            <%= f.text_area :content, class: 'form-control', rows: 5 %>
+            <%= f.select :status, [["未着", "未着"], ["対応中", "対応中"], ["完了", "完了"], ["ペンディング", "ペンディング"]], {}, {class: "form-control"} %>
+          </div>
+          <%= f.submit '編集', class: 'btn btn-primary btn-block' %>
+          <%= link_to "戻る", root_path, class: "btn btn-default btn-block" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
 
-<%= render "form", task: @task %>
+<%#= render "form", task: @task %>
